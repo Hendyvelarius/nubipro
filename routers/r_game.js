@@ -4,4 +4,5 @@ const game = express.Router();
 
 game.get('/', Controller.getAllGames)
 
+
 module.exports = game;

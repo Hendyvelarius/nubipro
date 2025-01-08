@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #1b2838;
+            color: #c6d4df;
+        }
+        .navbar {
+            background-color: #171a21;
+        }
+        .game-card {
+            background-color: #16202d;
+            border: none;
+            transition: transform 0.2s;
+            height: 100%;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .game-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        .price-tag {
+            background-color: #344654;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        .category-badge {
+            background-color: #67c1f5;
+            color: #1b2838;
+        }
+        .search-box {
+            background-color: #316282;
+            border: none;
+            color: white;
+        }
+        .search-box::placeholder {
+            color: #c6d4df;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-steam me-2"></i>Game Store
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex ms-auto">
+                    <input class="form-control search-box" type="search" placeholder="Search games...">
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
+            <% games.forEach(game => { %>
+                <div class="col">
+                    <div class="card game-card">
+                        <img src="<%= game.imageurl || '/images/default-game.jpg' %>" class="card-img-top game-img" alt="<%= game.name || 'Game' %>">
+                        <div class="card-body">
+                            <h5 class="card-title text-white"><%= game.name || 'Untitled Game' %></h5>
+                            <% if (game.Category) { %>
+                                <span class="badge category-badge mb-2"><%= game.Category.name %></span>
+                            <% } else { %>
+                                <span class="badge category-badge mb-2">Uncategorized</span>
+                            <% } %>
+                            <p class="card-text small"><%= game.GameDetails?.description || 'No description available.' %></p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price-tag">
+                                    <%= new Intl.NumberFormat('id-ID', { 
+                                        style: 'currency', 
+                                        currency: 'IDR' 
+                                    }).format(game.price) %>
+                                </span>
+                                <button class="btn btn-primary btn-sm">
+                                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
