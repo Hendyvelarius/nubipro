@@ -1,0 +1,21 @@
+[
+    { "UserGameId": 1, "hoursPlayed": 7200, "lastPlayed": "2025-01-06" },
+    { "UserGameId": 2, "hoursPlayed": 3600, "lastPlayed": "2025-01-05" },
+    { "UserGameId": 3, "hoursPlayed": 14400, "lastPlayed": "2025-01-04" },
+    { "UserGameId": 4, "hoursPlayed": 10800, "lastPlayed": "2025-01-07" },
+    { "UserGameId": 5, "hoursPlayed": 5400, "lastPlayed": "2025-01-03" },
+    { "UserGameId": 6, "hoursPlayed": 21600, "lastPlayed": "2025-01-01" },
+    { "UserGameId": 7, "hoursPlayed": 3600, "lastPlayed": "2025-01-08" },
+    { "UserGameId": 8, "hoursPlayed": 9000, "lastPlayed": "2025-01-06" },
+    { "UserGameId": 9, "hoursPlayed": 12600, "lastPlayed": "2025-01-05" },
+    { "UserGameId": 10, "hoursPlayed": 7200, "lastPlayed": "2025-01-04" },
+    { "UserGameId": 11, "hoursPlayed": 5400, "lastPlayed": "2025-01-02" },
+    { "UserGameId": 12, "hoursPlayed": 18000, "lastPlayed": "2025-01-07" },
+    { "UserGameId": 13, "hoursPlayed": 25200, "lastPlayed": "2025-01-01" },
+    { "UserGameId": 14, "hoursPlayed": 6300, "lastPlayed": "2025-01-05" },
+    { "UserGameId": 15, "hoursPlayed": 8400, "lastPlayed": "2025-01-03" },
+    { "UserGameId": 16, "hoursPlayed": 4500, "lastPlayed": "2025-01-06" },
+    { "UserGameId": 17, "hoursPlayed": 10800, "lastPlayed": "2025-01-08" },
+    { "UserGameId": 18, "hoursPlayed": 3600, "lastPlayed": "2025-01-04" },
+    { "UserGameId": 19, "hoursPlayed": 7200, "lastPlayed": "2025-01-02" }
+]

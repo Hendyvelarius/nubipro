@@ -1,0 +1,62 @@
+[
+    {
+      "username": "admin_user",
+      "email": "admin@example.com",
+      "password": "securepassword123",
+      "role": "admin"
+    },
+    {
+      "username": "dev_user",
+      "email": "developer@example.com",
+      "password": "devpassword456",
+      "role": "developer"
+    },
+    {
+      "username": "john_doe",
+      "email": "john.doe@example.com",
+      "password": "password1",
+      "role": "user"
+    },
+    {
+      "username": "jane_doe",
+      "email": "jane.doe@example.com",
+      "password": "password2",
+      "role": "user"
+    },
+    {
+      "username": "alex_smith",
+      "email": "alex.smith@example.com",
+      "password": "password3",
+      "role": "user"
+    },
+    {
+      "username": "chris_lee",
+      "email": "chris.lee@example.com",
+      "password": "password4",
+      "role": "user"
+    },
+    {
+      "username": "pat_taylor",
+      "email": "pat.taylor@example.com",
+      "password": "password5",
+      "role": "user"
+    },
+    {
+      "username": "morgan_kim",
+      "email": "morgan.kim@example.com",
+      "password": "password6",
+      "role": "user"
+    },
+    {
+      "username": "sam_parker",
+      "email": "sam.parker@example.com",
+      "password": "password7",
+      "role": "user"
+    },
+    {
+      "username": "taylor_jones",
+      "email": "taylor.jones@example.com",
+      "password": "password8",
+      "role": "user"
+    }
+  ]

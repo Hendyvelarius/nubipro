@@ -1,0 +1,21 @@
+[
+    { "UserId": 1, "GameId": 1 },
+    { "UserId": 1, "GameId": 3 },
+    { "UserId": 2, "GameId": 2 },
+    { "UserId": 2, "GameId": 5 },
+    { "UserId": 3, "GameId": 1 },
+    { "UserId": 3, "GameId": 7 },
+    { "UserId": 4, "GameId": 6 },
+    { "UserId": 4, "GameId": 8 },
+    { "UserId": 5, "GameId": 4 },
+    { "UserId": 5, "GameId": 9 },
+    { "UserId": 6, "GameId": 10 },
+    { "UserId": 7, "GameId": 3 },
+    { "UserId": 7, "GameId": 8 },
+    { "UserId": 8, "GameId": 2 },
+    { "UserId": 8, "GameId": 5 },
+    { "UserId": 9, "GameId": 7 },
+    { "UserId": 9, "GameId": 10 },
+    { "UserId": 10, "GameId": 4 },
+    { "UserId": 10, "GameId": 9 }
+]

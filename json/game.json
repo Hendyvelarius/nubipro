@@ -1,0 +1,62 @@
+[
+    {
+      "name": "Counter-Strike 2",
+      "price": 120000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/730/header.jpg?t=1729703045",
+      "CategoryId": 1
+    },
+    {
+      "name": "The Witcher 3: Wild Hunt",
+      "price": 299000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/292030/header.jpg?t=1734680583",
+      "CategoryId": 3
+    },
+    {
+      "name": "Cities: Skylines",
+      "price": 199000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/949230/header_alt_assets_2.jpg?t=1735836231",
+      "CategoryId": 4
+    },
+    {
+      "name": "EA Sports FC 25",
+      "price": 699000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2669320/header.jpg?t=1733419911",
+      "CategoryId": 5
+    },
+    {
+      "name": "Age of Empires IV",
+      "price": 499000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1466860/header.jpg?t=1724793729",
+      "CategoryId": 6
+    },
+    {
+      "name": "Hollow Knight",
+      "price": 129000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/367520/header.jpg?t=1695270428",
+      "CategoryId": 2
+    },
+    {
+      "name": "Red Dead Redemption 2",
+      "price": 579000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1174180/header.jpg?t=1720558643",
+      "CategoryId": 1
+    },
+    {
+      "name": "Stardew Valley",
+      "price": 115000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/413150/header.jpg?t=1711128146",
+      "CategoryId": 4
+    },
+    {
+      "name": "Elden Ring",
+      "price": 799000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg?t=1726158298",
+      "CategoryId": 3
+    },
+    {
+      "name": "Total War: Warhammer III",
+      "price": 599000,
+      "imageURL": "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1142710/header.jpg?t=1734023395",
+      "CategoryId": 6
+    }
+]

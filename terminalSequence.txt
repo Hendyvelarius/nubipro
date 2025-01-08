@@ -1,0 +1,2 @@
+npx sequelize model:generate --name Category --attributes name:string
+npx sequelize model:generate --name User --attributes username:string,email:string,password:string,role:string
