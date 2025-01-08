@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT //change from STRING to TEXT
       },
       GameId: {
         type: Sequelize.INTEGER,
