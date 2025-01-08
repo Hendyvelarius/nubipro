@@ -59,6 +59,31 @@
         .search-box::placeholder {
             color: #c6d4df;
         }
+        .btn-outline-light {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #c6d4df;
+            padding: 6px 15px;
+            transition: all 0.2s ease;
+        }
+        .btn-outline-light:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+        }
+        .btn-success {
+            background: linear-gradient(to right, #5c7e10, #80a50f);
+            border: none;
+            padding: 6px 15px;
+            transition: all 0.2s ease;
+        }
+        .btn-success:hover {
+            background: linear-gradient(to right, #75a00c, #9bc312);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .search-box::placeholder {
+            color: #c6d4df;
+        }
         .cart-btn {
             background: linear-gradient(to bottom, #799905 5%, #536904 95%);
             color: #c5e4de;
@@ -102,9 +127,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <form class="d-flex ms-auto">
-                    <input class="form-control search-box" type="search" placeholder="Search games...">
-                </form>
+                <div class="ms-auto d-flex align-items-center">
+                    <form class="d-flex me-3">
+                        <input class="form-control search-box" type="search" placeholder="Search games...">
+                    </form>
+                    <div class="d-flex">
+                        <a href="/user/login" class="btn btn-outline-light me-2">Login</a>
+                        <a href="/user/register" class="btn btn-success">Register</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
