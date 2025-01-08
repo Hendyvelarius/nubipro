@@ -5,7 +5,7 @@ class Controller {
             const games = await Game.findAll({ 
                 include: [Category, GameDetails]
             });
-            
+            // res.send(games)
             res.render('gamesHome', { games });
         } catch (error) {
             console.log(error);
