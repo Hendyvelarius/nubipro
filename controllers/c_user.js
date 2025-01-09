@@ -1,5 +1,6 @@
 const { User } = require('../models');
 const bcrypt = require('bcryptjs');
+const session = require('express-session');
 class Controller{
     static async getRegister(req, res) {
         try {
@@ -37,24 +38,25 @@ class Controller{
             // 2. if exist compare plain password with hashed password inside the database
             // 3. if not match cannot login or show error message
             // 4. if password match redirect to home page
-
+            
             const { username, password } = req.body;
             const user = await User.findOne({ where: { username } })
             if(user) {
-                // console.log("👤 User found:", user.username, user.id);
                 const isValidPassword = bcrypt.compareSync(password, user.password);
 
                 if(isValidPassword) {
                     // case user success login
                     req.session.userId = user.id; //save session in controller login
-                    // console.log("🚀 ~ Controller ~ postLogin ~ req.session.userId:", req.session)
-                    return res.redirect('/logout')
+                    return res.redirect('/user/logout')
+                    // return res.send("Login Success")
                 } else {
                     return res.redirect('/user/login?error=Invalid username or password')
+                    // return res.send("Invalid username or password")
                 }
             } else {
                 return res.redirect('/user/login?error=Invalid username or password')
             }
+            res.redirect('/user/logout')
         } catch (error) {
             console.error("❌ Login error:", error);
             console.error("🔍 Session state at error:", req.session);
@@ -64,7 +66,7 @@ class Controller{
 
     static async getLogout(req, res) {
         try {
-            
+            res.send('LOG OUT')
         } catch (error) {
             console.log(error);
         }

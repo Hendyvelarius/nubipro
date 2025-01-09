@@ -12,7 +12,7 @@ app.use(session({
     resave: false, // if there is no change in the session, don't save it or otherwise
     saveUninitialized: false,  
     cookie: { 
-        secure: true,
+        secure: false,
         sameSite: true, // add for security from csrf attack
      } //for https
 }))
