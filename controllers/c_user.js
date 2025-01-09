@@ -9,14 +9,10 @@ class Controller{
             res.send(error)
         }
     }
-
+    
     static async postRegister(req, res) {
         try {
             const { username, password, email, role } = req.body;
-            // console.log("🚀 ~ Controller ~ postRegister ~ role:", role)
-            // console.log("🚀 ~ Controller ~ postRegister ~ email:", email)
-            // console.log("🚀 ~ Controller ~ postRegister ~ password:", password)
-            // console.log("🚀 ~ Controller ~ postRegister ~ username:", username)
             await User.create({ username, password, email, role });
             res.redirect('/user/logout')
         } catch (error) {
