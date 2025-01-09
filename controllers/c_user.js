@@ -70,7 +70,13 @@ class Controller{
 
     static async getLogout(req, res) {
         try {
-            res.send('LOG OUT')
+            req.session.destroy((error) => {
+                if(error) {
+                    res.send(error);
+                } else {
+                    res.redirect('/user/login')
+                }
+            })
         } catch (error) {
             console.log(error);
         }
