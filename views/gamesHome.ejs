@@ -125,30 +125,7 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <i class="bi bi-steam me-2"></i>Game Store
-            </a>
-            <a class="navbar-brand" href="/">
-                <span class="btn btn-outline-light me-2">Library</span>
-                
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <div class="ms-auto d-flex align-items-center">
-                    <form class="d-flex me-3">
-                        <input class="form-control search-box" type="search" placeholder="Search games...">
-                    </form>
-                    <div class="d-flex">
-                        <a href="/user/logout" class="btn btn-outline-danger me-2">Logout</a>
-                        <a href="/user/login" class="btn btn-outline-light me-2">Login</a>
-                        <a href="/user/register" class="btn btn-success">Register</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <%- include("partials/navbar.ejs") %>
     </nav>
 
     <!-- Main Content -->

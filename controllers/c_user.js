@@ -13,8 +13,8 @@ class Controller{
     
     static async postRegister(req, res) {
         try {
-            const { username, password, email, role } = req.body;
-            await User.create({ username, password, email, role });
+            const { username, password, email } = req.body;
+            await User.create({ username, password, email, role: 'user' });
             res.redirect('/user/logout')
         } catch (error) {
             console.log(error);
