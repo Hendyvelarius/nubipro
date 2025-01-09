@@ -11,5 +11,7 @@ user.post('/login', Controller.postLogin)
 
 user.get('/logout', Controller.getLogout)
 
+user.get('/library/:id', Controller.getLibrary)
+
 
 module.exports = user;
