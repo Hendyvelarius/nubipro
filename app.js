@@ -6,7 +6,7 @@ const session = require('express-session')
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({extended: true}))
-
+app.use('/uploads', express.static('uploads'))
 app.use(session({
     secret: 'rahasiaaa dong huhuhuu', //this is important dude
     resave: false, // if there is no change in the session, don't save it or otherwise

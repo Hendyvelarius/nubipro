@@ -15,11 +15,33 @@ class Controller{
     static async postRegister(req, res) {
         try {
             const { username, password, email } = req.body;
-            await User.create({ username, password, email, role: 'user' });
-            res.redirect('/user/logout')
+            
+            // Validate required fields
+            if (!username || !password || !email) {
+                throw new Error('Username, password and email are required');
+            }
+
+            // Handle profile picture upload
+            let profilePicture = 'default-profile.png'; // Default image
+            if (req.file) {
+                profilePicture = req.file.filename;
+            }
+
+            // Create user with form data and profile picture
+            await User.create({
+                username,
+                password,
+                email,
+                role: 'user',
+                profilePicture
+            });
+
+            res.redirect('/user/login');
         } catch (error) {
-            console.log(error);
-            res.send(error)
+            console.log('Registration error:', error);
+            res.render('./user/registerForm', {
+                error: error.message || 'Registration failed. Please try again.'
+            });
         }
     }
 
@@ -93,11 +115,18 @@ class Controller{
                 return res.redirect("/games");
             }
 
-            const user = await User.findByPk(id);
+            const user = await User.findByPk(id, {
+                attributes: ['id', 'username', 'email', 'profilePicture']
+            });
             
-            // if (!user) {
-            //     return res.status(404).send("User not found");
-            // }
+            if (!user) {
+                return res.redirect("/games?error=User not found");
+            }
+
+            // Add /uploads/ prefix to profile picture path if it's not the default
+            if (user.profilePicture && user.profilePicture !== 'default-profile.png') {
+                user.profilePicture = `/uploads/${user.profilePicture}`;
+            }
 
             const userGames = await UserGame.findAll({
                 where: { UserId: user.id },
@@ -109,13 +138,19 @@ class Controller{
                 ]
             });
 
-            res.render('library', { user, userGames });
+            res.render('library', { 
+                user, 
+                userGames,
+                profilePicture: user.profilePicture
+            });
         } catch (error) {
             console.error("Error in getLibrary:", error);
-            // res.status(500).render('error', { 
-            //     message: "An error occurred while loading your library",
-            //     error: error
-            // });
+            res.render('library', { 
+                error: "An error occurred while loading your library",
+                user: null,
+                userGames: [],
+                profilePicture: 'default-profile.png'
+            });
         }
     }
 }

@@ -40,6 +40,8 @@ class Controller {
                 UserId: userId,
                 GameId: idGame
             });
+
+            res.redirect('/user/library/' + userId);
         } catch (error) {
             console.log(error);
             res.send(error)

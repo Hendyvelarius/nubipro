@@ -102,13 +102,36 @@
             box-shadow: 0 0 10px rgba(102, 192, 244, 0.3);
             color: #ffffff;
         }
+        .file-input-wrapper {
+            position: relative;
+        }
+        .form-control[type="file"] {
+            padding: 0.5rem;
+            cursor: pointer;
+        }
+        .form-control[type="file"]::file-selector-button {
+            background: linear-gradient(to right, #66c0f4, #5aa9e6);
+            border: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            margin-right: 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .form-control[type="file"]::file-selector-button:hover {
+            background: linear-gradient(to right, #5aa9e6, #66c0f4);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
     <div class="form-container">
                     <h2 class="form-title">Create Your NubiPro Account</h2>
-                    <div class="error-message" id="errorMessage"></div>
-                    <form action="/user/register" method="POST">
+                    <% if (typeof error !== 'undefined') { %>
+                        <div class="error-message" style="display: block;"><%= error %></div>
+                    <% } %>
+                    <form action="/user/register" method="POST" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>
@@ -116,6 +139,18 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profilePicture" class="form-label">Profile Picture</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" 
+                                    class="form-control" 
+                                    id="profilePicture" 
+                                    name="profilePicture" 
+                                    accept="image/*"
+                                    onchange="validateFileSize(this)">
+                                <small class="text-muted">Accepted formats: JPG, PNG, GIF (Max 5MB)</small>
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
@@ -133,6 +168,23 @@
                     </form>
                 </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function validateFileSize(input) {
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            if (input.files[0] && input.files[0].size > maxSize) {
+                alert('File size must be less than 5MB');
+                input.value = '';
+            }
+        }
+        
+        // Show error message if it exists
+        document.addEventListener('DOMContentLoaded', function() {
+            const errorMessage = document.querySelector('.error-message');
+            if (errorMessage && errorMessage.textContent.trim() !== '') {
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
 </body>
 </html>
 
