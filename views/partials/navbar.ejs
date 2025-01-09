@@ -13,12 +13,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <div class="ms-auto d-flex align-items-center">
             <form class="d-flex me-3">
-                <input class="form-control search-box" type="search" placeholder="Search games...">
+                <input class="form-control search-box" type="search" name="search" placeholder="Search games...">
+                <button class="btn btn-outline-light" type="submit">Search</button>
             </form>
             <div class="d-flex">
                 
                 <% if(user) { %>
-                    <a href="/" class="btn btn-outline-light me-2"> Library</a>
+                    <a href="/user/library/<%= user.id %>" class="btn btn-outline-light me-2"> Library</a>
                     <a href="/user/logout" class="btn btn-outline-danger me-2">Logout</a>
                 <% } %>
 

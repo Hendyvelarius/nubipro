@@ -1,4 +1,5 @@
 'use strict';
+const {Op} = require('sequelize');
 const {
   Model
 } = require('sequelize');
@@ -15,7 +16,22 @@ module.exports = (sequelize, DataTypes) => {
     Game.belongsToMany(models.User, {through: models.UserGame});
     Game.hasOne(models.GameDetails)
     }
-  }
+
+    static searchGameTitle(value) {
+      const options = {
+          include: [sequelize.models.Category, sequelize.models.GameDetails]
+      }
+      
+      if(value) {
+          options.where = {
+            name: {
+              [Op.iLike]: `%${value}%`
+            }
+        }
+      }
+      return options;
+    }
+  };
   Game.init({
     name: DataTypes.STRING,
     price: DataTypes.INTEGER,
