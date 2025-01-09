@@ -10,5 +10,6 @@ game.use(function( req, res, next) {
 })
 
 game.get('/', Controller.getAllGames)
+game.get('/:id', Controller.gameDetails)
 
 module.exports = game;
