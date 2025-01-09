@@ -138,33 +138,35 @@
         <% } %>
         <div class="row row-cols-lg-4 row-cols-md-3 g-4">
             <% games.forEach(game => { %>
-                <div class="col">
-                    <a href="/games/<%= game.id %>" class="text-decoration-none">
-                    <div class="card game-card">
-                        <img src="<%= game.imageurl || '/images/default-game.jpg' %>" class="card-img-top game-img" alt="<%= game.name || 'Game' %>">
-                        <div class="card-body">
-                            <h5 class="card-title text-white"><%= game.name || 'Untitled Game' %></h5>
-                            <% if (game.Category) { %>
-                                <span class="badge category-badge mb-2"><%= game.Category.name %></span>
-                            <% } else { %>
-                                <span class="badge category-badge mb-2">Uncategorized</span>
-                            <% } %>
-                            <p class="card-text small text-white"><%= game.GameDetail?.description || 'No description available.' %></p>
-                            <div class="d-flex justify-content-between align-items-center button-container">
-                                <span class="price-tag">
-                                    <%= new Intl.NumberFormat('id-ID', { 
-                                        style: 'currency', 
-                                        currency: 'IDR' 
-                                    }).format(game.price) %>
-                                </span>
-                                <button class="btn cart-btn">
-                                    <i class="bi bi-cart-plus me-1"></i>Purchase Now
-                                </button>
+                <form action="/games/buy/<%= game.id %>" method="POST">
+                    <div class="col">
+                        <a href="/games/<%= game.id %>" class="text-decoration-none">
+                        <div class="card game-card">
+                            <img src="<%= game.imageurl || '/images/default-game.jpg' %>" class="card-img-top game-img" alt="<%= game.name || 'Game' %>">
+                            <div class="card-body">
+                                <h5 class="card-title text-white"><%= game.name || 'Untitled Game' %></h5>
+                                <% if (game.Category) { %>
+                                    <span class="badge category-badge mb-2"><%= game.Category.name %></span>
+                                <% } else { %>
+                                    <span class="badge category-badge mb-2">Uncategorized</span>
+                                <% } %>
+                                <p class="card-text small text-white"><%= game.GameDetail?.description || 'No description available.' %></p>
+                                <div class="d-flex justify-content-between align-items-center button-container">
+                                    <span class="price-tag">
+                                        <%= new Intl.NumberFormat('id-ID', { 
+                                            style: 'currency', 
+                                            currency: 'IDR' 
+                                        }).format(game.price) %>
+                                    </span>
+                                    <button class="btn cart-btn">
+                                        <i class="bi bi-cart-plus me-1"></i>Purchase Now
+                                    </button>
+                                </div>
                             </div>
                         </div>
+                        </a>
                     </div>
-                    </a>
-                </div>
+                </form>
             <% }); %>
         </div>
     </div>
