@@ -3,9 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NubiPro <%= game.name%></title>
+    <title>NubiPro <%= game.name %></title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1b2838;
+            color: #c7d5e0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #2a475e;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #66c0f4;
+        }
+        .game-details {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .slideshow-container {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .slideshow {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            border: 1px solid #c7d5e0;
+        }
+        .slides img {
+            width: 100%;
+            display: none;
+        }
+        .slides img.active {
+            display: block;
+        }
+        .controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+        .control-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .control-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .price {
+            margin-top: 20px;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #66c0f4;
+            text-align: center;
+        }
+        .thumbnail-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .thumbnail img {
+            max-width: 100%;
+            border-radius: 10px;
+            border: 1px solid #c7d5e0;
+            margin-bottom: 15px;
+        }
+        .description {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        .buy-button {
+            margin-top: 20px;
+            padding: 10px 30px;
+            font-size: 1.2em;
+            color: #fff;
+            background-color: #66c0f4;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+        .buy-button:hover {
+            background-color: #417a9b;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slides img');
+            const prevButton = document.querySelector('.prev-btn');
+            const nextButton = document.querySelector('.next-btn');
+            let currentIndex = 0;
+
+            function showSlide(index) {
+                slides[currentIndex].classList.remove('active');
+                currentIndex = (index + slides.length) % slides.length;
+                slides[currentIndex].classList.add('active');
+            }
+
+            function showNextSlide() {
+                showSlide(currentIndex + 1);
+            }
+
+            function showPrevSlide() {
+                showSlide(currentIndex - 1);
+            }
+
+            // Automatic slideshow
+            let slideInterval = setInterval(showNextSlide, 3000);
+
+            // Event listeners for buttons
+            nextButton.addEventListener('click', () => {
+                showNextSlide();
+                clearInterval(slideInterval); // Reset interval
+                slideInterval = setInterval(showNextSlide, 3000);
+            });
+
+            prevButton.addEventListener('click', () => {
+                showPrevSlide();
+                clearInterval(slideInterval); // Reset interval
+                slideInterval = setInterval(showNextSlide, 3000);
+            });
+
+            // Initialize the first slide
+            slides[currentIndex].classList.add('active');
+        });
+    </script>
 </head>
 <body>
-    
+    <div class="container">
+        <h1><%= game.name %></h1>
+        <div class="game-details">
+            <!-- Slideshow and Price -->
+            <div class="slideshow-container">
+                <div class="slideshow">
+                    <div class="slides">
+                        <% game.GameDetail.imageList.split(',').forEach(image => { %>
+                            <img src="<%= image %>" alt="Slide">
+                        <% }) %>
+                    </div>
+                    <div class="controls">
+                        <button class="control-btn prev-btn">❮ Prev</button>
+                        <button class="control-btn next-btn">Next ❯</button>
+                    </div>
+                </div>
+                <div class="price"><%= new Intl.NumberFormat('id-ID', { 
+                    style: 'currency', 
+                    currency: 'IDR' 
+                }).format(game.price) %></div>
+            </div>
+            <!-- Thumbnail, Description, and Buy Button -->
+            <div class="thumbnail-container">
+                <div class="thumbnail">
+                    <img src="<%= game.imageurl %>" alt="<%= game.name %> Thumbnail">
+                </div>
+                <div class="description">
+                    <p><%= game.GameDetail.description %></p>
+                </div>
+                <a href="#" class="buy-button">Buy Game</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

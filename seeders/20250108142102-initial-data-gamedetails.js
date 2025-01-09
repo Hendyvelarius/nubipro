@@ -16,7 +16,7 @@ module.exports = {
     data.forEach(el => {
     el.createdAt = new Date();
     el.updatedAt = new Date();
-    el.imageList = JSON.stringify(el.imageList); // Convert array to JSON string
+    el.imageList = el.imageList.join(','); // Convert array to JSON string
     });
     await queryInterface.bulkInsert('GameDetails', data, {});
   },
