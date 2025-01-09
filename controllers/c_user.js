@@ -90,7 +90,7 @@ class Controller{
             const id = req.params.id;
             const user = await User.findByPk(id);
             const userGames = await UserGame.findAll({
-                where: { UserId: id },
+                where: { UserId: user.id },
                 include: [
                     {
                         model: GameStatistic
@@ -100,8 +100,7 @@ class Controller{
                     }
                 ]
             });
-            // res.render('library', { user , userGames });
-            res.send(userGames)
+            res.render('library', { user , userGames });
         } catch (error) {
             console.log(error);
             res.send(error);
