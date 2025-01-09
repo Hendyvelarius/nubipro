@@ -3,29 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NubiPro <%= game.name %></title>
+    <title><%= game.name %> on NubiPro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* General styles */
+    :root {
+        --steam-bg: #1b2838;
+        --steam-header: #171a21;
+        --steam-content: #2a475e;
+        --steam-accent: #66c0f4;
+        --steam-text-normal: #c7d5e0;
+        --steam-text-bright: #ffffff;
+        --steam-btn-primary: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+        --steam-btn-secondary: linear-gradient(90deg, #4D6280 0%, #3D4450 100%);
+        --steam-shadow: rgba(0, 0, 0, 0.3);
+    }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #1b2838;
-            color: #c7d5e0;
+            font-family: "Motiva Sans", Arial, sans-serif;
+            background-color: var(--steam-bg);
+            color: var(--steam-text-normal);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
+            min-height: 100vh;
         }
         .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #2a475e;
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+        }
+
+        .game-header-bg {
+            width: 100%;
+            height: 450px;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        .game-header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(27, 40, 56, 0.4), var(--steam-bg));
+        }
+
+        .game-header-content {
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 16px;
+            position: relative;
+            z-index: 2;
+            color: var(--steam-text-bright);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 70% 30%;
+            gap: 24px;
+            max-width: 940px;
+            margin: 0 auto;
+            padding: 16px;
         }
         h1 {
             text-align: center;
             font-size: 2.5em;
             color: #66c0f4;
+        }
+        
+        .game-title {
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5em;
+            color: #66c0f4;
+            padding: 0 15px;
         }
         .game-details {
             display: flex;
@@ -100,20 +157,118 @@
             line-height: 1.5;
         }
         .buy-button {
-            margin-top: 20px;
-            padding: 10px 30px;
-            font-size: 1.2em;
-            color: #fff;
-            background-color: #66c0f4;
-            border: none;
-            border-radius: 5px;
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--steam-accent);
+            color: var(--steam-accent);
+            border-radius: 3px;
             cursor: pointer;
             text-decoration: none;
             text-align: center;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease;
+            font-size: 1rem;
         }
         .buy-button:hover {
-            background-color: #417a9b;
+            background: rgba(102, 192, 244, 0.2);
+        }
+        
+        .game-header {
+            margin-bottom: 2rem;
+        }
+        
+        .game-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tag {
+            background: rgba(103, 193, 245, 0.2);
+            color: var(--steam-accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+        
+        .game-info-sidebar {
+            flex: 1;
+            background: rgba(42, 71, 94, 0.5);
+            border-radius: 4px;
+            padding: 1.5rem;
+        }
+        
+        .price-container {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .wishlist-button {
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: transparent;
+            border: 1px solid var(--steam-accent);
+            color: var(--steam-accent);
+            border-radius: 3px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .wishlist-button:hover {
+            background: rgba(102, 192, 244, 0.2);
+        }
+        
+        .social-share {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .share-button, .report-button {
+            flex: 1;
+            padding: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border: none;
+            color: var(--steam-text);
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .share-button:hover, .report-button:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+        
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+        
+        .features-list li {
+            margin: 0.5rem 0;
+            color: var(--steam-text);
+        }
+        
+        .features-list i {
+            margin-right: 0.5rem;
+            color: var(--steam-accent);
         }
     </style>
     <script>
@@ -163,7 +318,18 @@
         <%- include("partials/navbar.ejs", {user}) %>
     </nav>
     <div class="container">
-        <h1><%= game.name %></h1>
+        <div class="game-header-bg" style="background-image: url('<%= game.imageurl %>')">
+            <div class="game-header-overlay"></div>
+            <div class="game-header-content">
+                <div class="game-meta">
+                    <div class="tags">
+                        <% (game.GameDetail.tags || '').split(',').forEach(tag => { %>
+                            <a href="#" class="tag"><%= tag.trim() %></a>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="game-details">
             <!-- Slideshow and Price -->
             <div class="slideshow-container">
@@ -178,20 +344,34 @@
                         <button class="control-btn next-btn">Next ❯</button>
                     </div>
                 </div>
-                <div class="price"><%= new Intl.NumberFormat('id-ID', { 
-                    style: 'currency', 
-                    currency: 'IDR' 
-                }).format(game.price) %></div>
+                <h1 class="game-title"><%= game.name %></h1>
             </div>
             <!-- Thumbnail, Description, and Buy Button -->
-            <div class="thumbnail-container">
+            <div class="game-info-sidebar">
                 <div class="thumbnail">
                     <img src="<%= game.imageurl %>" alt="<%= game.name %> Thumbnail">
                 </div>
+                <div class="price-container">
+                    <div class="price"><%= new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(game.price) %></div>
+                    <a href="#" class="buy-button">Purchase Now</a>
+                    <button class="wishlist-button"><i class="far fa-heart"></i> Add to Wishlist</button>
+                </div>
+                <div class="game-features">
+                    <h3>Game Features</h3>
+                    <ul class="features-list">
+                        <li><i class="fas fa-users"></i> Multi-player</li>
+                        <li><i class="fas fa-cloud"></i> Cloud Saves</li>
+                        <li><i class="fas fa-gamepad"></i> Controller Support</li>
+                    </ul>
+                </div>
                 <div class="description">
+                    <h3>About This Game</h3>
                     <p><%= game.GameDetail.description %></p>
                 </div>
-                <a href="#" class="buy-button">Buy Game</a>
+                <div class="social-share">
+                    <button class="share-button"><i class="fas fa-share-alt"></i> Share</button>
+                    <button class="report-button"><i class="fas fa-flag"></i> Report</button>
+                </div>
             </div>
         </div>
     </div>
