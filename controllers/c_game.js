@@ -1,4 +1,5 @@
 const { Game, Category, GameDetails } = require('../models');
+const session = require('express-session');
 class Controller {
     static async getAllGames(req, res) {
         try {
