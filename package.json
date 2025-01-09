@@ -16,7 +16,8 @@
     "express-session": "^1.18.1",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.13.1",
-    "sequelize": "^6.37.5"
+    "sequelize": "^6.37.5",
+    "timer-node": "^5.0.7"
   },
   "devDependencies": {
     "nodemon": "^3.1.9",

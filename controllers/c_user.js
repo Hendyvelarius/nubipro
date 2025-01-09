@@ -129,6 +129,7 @@ class Controller{
             }
 
             const userGames = await UserGame.findAll({
+>>>>>>> 6ed47d319b11fabc83c0335463848cf4633a27e1
                 where: { UserId: user.id },
                 include: [
                     {
