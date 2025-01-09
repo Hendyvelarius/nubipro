@@ -47,7 +47,7 @@ class Controller{
                 if(isValidPassword) {
                     // case user success login
                     req.session.userId = user.id; //save session in controller login
-                    return res.redirect('/user/logout')
+                    return res.redirect('/games')
                     // return res.send("Login Success")
                 } else {
                     return res.redirect('/user/login?error=Invalid username or password')
