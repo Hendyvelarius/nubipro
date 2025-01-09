@@ -31,6 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       {
         rank = "Bronze";
       }
+      return rank;
     }
   }
 GameStatistic.init({
