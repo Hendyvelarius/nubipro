@@ -124,8 +124,9 @@
 </head>
 <body>
     <!-- Navigation -->
+     <%#= JSON.stringify(idUser) %>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-4">
-        <%- include("partials/navbar.ejs") %>
+        <%- include("partials/navbar.ejs", {user}) %>
     </nav>
 
     <!-- Main Content -->

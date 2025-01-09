@@ -1,11 +1,10 @@
 
 <div class="container">
+    <%#= JSON.stringify(idUser) %>
+
+
     <a class="navbar-brand" href="/">
         <i class="bi bi-steam me-2"></i>Game Store
-    </a>
-    <a class="navbar-brand" href="/">
-        <span class="btn btn-outline-light me-2">Library</span>
-        
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -16,9 +15,16 @@
                 <input class="form-control search-box" type="search" placeholder="Search games...">
             </form>
             <div class="d-flex">
-                <a href="/user/logout" class="btn btn-outline-danger me-2">Logout</a>
-                <a href="/user/login" class="btn btn-outline-light me-2">Login</a>
-                <a href="/user/register" class="btn btn-success">Register</a>
+                
+                <% if(user) { %>
+                    <a href="/" class="btn btn-outline-light me-2"> Library</a>
+                    <a href="/user/logout" class="btn btn-outline-danger me-2">Logout</a>
+                <% } %>
+
+                <% if(!user) { %>
+                    <a href="/user/login" class="btn btn-outline-light me-2">Login</a>
+                    <a href="/user/register" class="btn btn-success">Register</a>
+                <% } %>
             </div>
         </div>
     </div>

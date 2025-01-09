@@ -51,7 +51,7 @@ class Controller{
                         role: user.role,
                         username: user.username,
                     }; //save session in controller login
-                    return res.redirect('/games')
+                    return res.redirect(`/games?session=${req.session.id}`)
                     // return res.send("Login Success")
                 } else {
                     return res.redirect('/user/login?error=Invalid username or password')
@@ -60,7 +60,6 @@ class Controller{
             } else {
                 return res.redirect('/user/login?error=Invalid username or password')
             }
-            res.redirect('/user/logout')
         } catch (error) {
             console.error("❌ Login error:", error);
             console.error("🔍 Session state at error:", req.session);
@@ -74,9 +73,9 @@ class Controller{
                 if(error) {
                     res.send(error);
                 } else {
-                    res.redirect('/user/login')
+                    res.redirect('/games')
                 }
-            })
+            });
         } catch (error) {
             console.log(error);
         }
