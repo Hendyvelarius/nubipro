@@ -1,16 +1,16 @@
 <mxfile host="65bd71144e">
     <diagram id="N5-tyj9krVj1G9Ebz3FV" name="Page-1">
-        <mxGraphModel dx="1112" dy="446" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="655" dy="561" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="Router&lt;br&gt;index (main)&lt;br&gt;gameRouter (category, game, gameDetails)&lt;br&gt;userRouter (user, userGame, gameStatistic)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="2" value="Router&lt;br&gt;index (main)&lt;br&gt;gameRouter (category, game, gameDetails)&lt;br&gt;userRouter (user, userGame, gameStatistic)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="30" y="30" width="240" height="260" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Controller&lt;br&gt;gameController (category, game, gameDetails)&lt;br&gt;userController (user, userGame, gameStatistic)" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="20" y="240" width="240" height="260" as="geometry"/>
+                <mxCell id="3" value="Controller&lt;br&gt;gameController (category, game, gameDetails)&lt;br&gt;userController (user, userGame, gameStatistic)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="130" y="310" width="240" height="260" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="1. Kelarin CV dulu&lt;br&gt;2. Ganti Router dan Controller ke sesuai kategori&lt;br&gt;3. Storepage menggunakan card dengan dimensi image 460 x 215&lt;br&gt;4. Update seluruh image di database&lt;br&gt;5. Troubleshoot session" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+                <mxCell id="4" value="1. Kelarin CV dulu&lt;br&gt;2. Ganti Router dan Controller ke sesuai kategori&lt;br&gt;3. Storepage menggunakan card dengan dimensi image 460 x 215&lt;br&gt;4. Update seluruh image di database&lt;br&gt;5. Troubleshoot session" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
                     <mxGeometry x="320" y="40" width="260" height="260" as="geometry"/>
                 </mxCell>
             </root>
