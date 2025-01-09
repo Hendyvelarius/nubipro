@@ -13,6 +13,25 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     GameStatistic.belongsTo(models.UserGame, { foreignKey: 'UserGameId' });
     }
+
+    get rank (){
+      if (hoursPlayed >= 1000)
+      {
+        rank = "Platinum";
+      }
+      else if (hoursPlayed >= 500)
+      {
+        rank = "Gold";
+      }
+      else if (hoursPlayed >= 100)
+      {
+        rank = "Silver";
+      }
+      else
+      {
+        rank = "Bronze";
+      }
+    }
   }
 GameStatistic.init({
 UserGameId: {
