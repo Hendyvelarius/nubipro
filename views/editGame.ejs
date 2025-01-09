@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Game - Steam</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --steam-bg: #171a21;
+            --steam-bg-secondary: #1b2838;
+            --steam-text: #c6d4df;
+            --steam-input-bg: #32353c;
+            --steam-button: #66c0f4;
+            --steam-button-hover: #1999ff;
+        }
+        body {
+            background-color: var(--steam-bg);
+            color: var(--steam-text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        }
+        .steam-container {
+            background-color: var(--steam-bg-secondary);
+            padding: 24px;
+            border-radius: 4px;
+            max-width: 940px;
+            margin: 40px auto;
+        }
+        .form-control, .form-select {
+            background-color: var(--steam-input-bg) !important;
+            border: 1px solid #4c5b6e !important;
+            color: var(--steam-text) !important;
+            padding: 10px !important;
+            border-radius: 3px !important;
+        }
+        .form-control:focus, .form-select:focus {
+            box-shadow: none !important;
+            border-color: var(--steam-button) !important;
+        }
+        .form-label {
+            color: #8f98a0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .btn-steam {
+            background: linear-gradient(to bottom, #799905 5%, #536904 95%);
+            color: #fff;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 2px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .btn-steam:hover {
+            background: linear-gradient(to bottom, #a9d805 5%, #799905 95%);
+            color: #fff;
+        }
+        .btn-steam-secondary {
+            background: linear-gradient(to bottom, #4c5b6e 5%, #32353c 95%);
+            color: #fff;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 2px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        .btn-steam-secondary:hover {
+            background: linear-gradient(to bottom, #5b6d84 5%, #4c5b6e 95%);
+            color: #fff;
+        }
+        h2 {
+            color: #fff;
+            font-size: 26px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+        .invalid-feedback {
+            color: #ff4949;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="steam-container">
+        <h2 class="mb-4">Edit Game</h2>
+        
+        <form action="/games/edit/<%= game.id %>" method="POST" class="needs-validation" novalidate>
+            <input type="hidden" name="gameId" value="<%= game.id %>">
+            
+            <div class="mb-3">
+                <label for="name" class="form-label">Game Title</label>
+                <input type="text" class="form-control" id="name" name="name" 
+                    value="<%= game.name %>" required>
+                <div class="invalid-feedback">
+                    Please enter a game title.
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" 
+                    value="<%= game.price %>" step="0.01" min="0" required>
+                <div class="invalid-feedback">
+                    Please enter a valid price.
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="imageUrl" class="form-label">Image URL</label>
+                <input type="url" class="form-control" id="imageUrl" name="imageUrl" 
+                    value="<%= game.imageurl %>" required>
+                <div class="invalid-feedback">
+                    Please enter a valid image URL.
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <select class="form-select" id="category" name="categoryId" required>
+                    <% categories.forEach(function(category) { %>
+                        <option value="<%= category.id %>" 
+                                <%= game.categoryId === category.id ? 'selected' : '' %>>
+                            <%= category.name %>
+                        </option>
+                    <% }); %>
+                </select>
+                <div class="invalid-feedback">
+                    Please select a category.
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <button type="submit" class="btn-steam">Update Game</button>
+                <a href="/games/manage" class="btn-steam-secondary ms-2">Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Form validation script
+        (function () {
+            'use strict'
+            var forms = document.querySelectorAll('.needs-validation')
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+    </script>
+</body>
+</html>
