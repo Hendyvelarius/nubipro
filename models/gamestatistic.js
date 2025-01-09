@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
     get rank (){
+      let rank;
       if (hoursPlayed >= 1000)
       {
         rank = "Platinum";
