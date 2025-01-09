@@ -46,7 +46,11 @@ class Controller{
 
                 if(isValidPassword) {
                     // case user success login
-                    req.session.userId = user.id; //save session in controller login
+                    req.session.user = {
+                        id: user.id,
+                        role: user.role,
+                        username: user.username,
+                    }; //save session in controller login
                     return res.redirect('/games')
                     // return res.send("Login Success")
                 } else {

@@ -5,8 +5,19 @@ const session = require('express-session');
 
 game.use(function( req, res, next) {
     console.log("🚀 ~ user.use ~ req.session.userId:", req.session)
-    // console.log('HURAAAAA', '<<<<<<<<');
-    next()
+    if(!req.session.user.id) {
+        res.redirect('/user/login?error=please login first')
+    } else {
+        next()
+    }
+})
+
+game.use(function( req, res, next) {
+    if(req.session.user.role !== 'admin') {
+        res.redirect('/user/login?error=You have no access')
+    } else {
+        next()
+    }
 })
 
 game.get('/', Controller.getAllGames)
