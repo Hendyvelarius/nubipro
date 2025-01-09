@@ -7,5 +7,6 @@ const game = express.Router();
 
 
 game.get('/', Controller.getAllGames)
+game.get('/:id', Controller.gameDetails)
 
 module.exports = game;

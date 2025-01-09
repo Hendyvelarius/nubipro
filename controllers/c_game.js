@@ -12,6 +12,18 @@ class Controller {
             res.send(error); 
         }
     }
+    static async gameDetails(req, res) {
+        try {
+            const id = req.params.id;
+            const game = await Game.findByPk(id, {
+                include: [Category, GameDetails]
+            });
+            res.render('gameDetails', { game });
+        } catch (error) {
+            console.log(error);
+            res.send(error);
+        }
+    }
 }
 
 module.exports = Controller;
