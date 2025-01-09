@@ -86,7 +86,7 @@ class Controller{
                 return res.redirect("/games");
             }
             const user = await User.findByPk(id);
-            const userGames = await UserGame.findAll({
+            const userGameStatistic = await UserGame.findAll({
                 where: { UserId: user.id },
                 include: [
                     {
