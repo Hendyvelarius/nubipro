@@ -160,7 +160,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top mb-4">
-        <%- include("partials/navbar.ejs") %>
+        <%- include("partials/navbar.ejs", {user}) %>
     </nav>
     <div class="container">
         <h1><%= game.name %></h1>

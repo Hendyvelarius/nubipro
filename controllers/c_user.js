@@ -24,6 +24,10 @@ class Controller{
 
     static async getLogin(req, res) {
         try {
+            let user = req.session?.user;
+            if(user) {
+                return res.redirect('/games')
+            } 
             const {error} = req.query;
             res.render('./user/loginForm', {error})
         } catch (error) {
