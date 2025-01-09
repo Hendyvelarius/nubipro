@@ -39,6 +39,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
         }
         .stats {
             font-size: 0.9rem;
@@ -57,7 +58,77 @@
             padding: 1rem;
             border-radius: 8px;
             margin-bottom: 1rem;
+        background: linear-gradient(to bottom, #64961c, #4a7015);
+        color: #ffffff;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        width: 100%;
+        margin-bottom: 1rem;
+        text-align: left;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
+        .play-button:hover {
+            background: linear-gradient(to right, #75b022, #588a1b);
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.4);
+        }
+        .play-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        .play-button-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background-color: #a4d007;
+            border-radius: 50%;
+            margin-left: 4px;
+        }
+        .button-inner {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .play-icon i {
+            font-size: 24px;
+            color: #ffffff;
+        }
+        .button-labels {
+            display: flex;
+            flex-direction: column;
+        }
+        .play-text {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .game-status {
+            font-size: 12px;
+            opacity: 1;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        .stats-label {
+            color: #8f98a0;
+        }
+        .stats-value {
+            color: #c5c3c0;
+        }
+    </style>
     </style>
 </head>
 <body>
@@ -84,7 +155,7 @@
             </div>
         </div>
     </div>
-
+    <!-- <p><%#= JSON.stringify(userGames) %></p> -->
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-4">
             <% userGames.forEach(userGame => { %>
@@ -94,17 +165,29 @@
                             class="game-img" alt="<%= userGame.Game.name || 'Game' %>">
                         <div class="card-body">
                             <h5 class="game-title"><%= userGame.Game.name || 'Unknown Game' %></h5>
+                            <button class="play-button">
+                                <div class="play-button-content">
+                                    <div class="status-indicator"></div>
+                                    <div class="button-inner">
+                                        <div class="play-icon">
+                                            <i class="fas fa-play-circle"></i>
+                                        </div>
+                                        <div class="button-labels">
+                                            <span class="play-text">PLAY</span>
+                                            <span class="game-status">Ready to play</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </button>
                             <div class="stats">
-                                <p class="mb-2">
-                                    <i class="fas fa-clock me-2"></i>
-                                    Hours Played: <%= userGame.GameStatistic ? userGame.GameStatistic.hoursPlayed : 0 %>
-                                </p>
-                                <% if(userGame.GameStatistic && userGame.GameStatistic.lastPlayed) { %>
-                                    <p class="mb-0">
-                                        <i class="fas fa-calendar-alt me-2"></i>
-                                        Last Played: <%= new Date(userGame.GameStatistic.lastPlayed).toLocaleDateString() %>
-                                    </p>
-                                <% } %>
+                                <div class="stats-item">
+                                    <span class="stats-label">Total Playtime:</span>
+                                    <span class="stats-value"><%= userGame.playtime || '0' %> hours</span>
+                                </div>
+                                <div class="stats-item">
+                                    <span class="stats-label">Last Played:</span>
+                                    <span class="stats-value"><%= userGame.lastPlayed ? new Date(userGame.lastPlayed).toLocaleDateString() : 'Never' %></span>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
-const { User , Game , GameStatistic , UserGame } = require('../models');
+const { User , Game , UserGame } = require('../models');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
+const {Op} = require('sequelize');
 class Controller{
     static async getRegister(req, res) {
         try {
@@ -42,6 +43,7 @@ class Controller{
             if(user) {
                 const isValidPassword = bcrypt.compareSync(password, user.password);
 
+                
                 if(isValidPassword) {
                     req.session.user = {
                         id: user.id,
@@ -80,27 +82,40 @@ class Controller{
 
     static async getLibrary(req, res) {
         try {
-            const userId = req.session?.user.id;
+            const userId = req.session?.user?.id;
             const id = req.params.id;
-            if(userId != id) {
+            
+            if (!userId) {
+                return res.redirect("/user/login?error=Please login first");
+            }
+            
+            if (userId != id) {
                 return res.redirect("/games");
             }
+
             const user = await User.findByPk(id);
+            
+            // if (!user) {
+            //     return res.status(404).send("User not found");
+            // }
+
             const userGames = await UserGame.findAll({
                 where: { UserId: user.id },
                 include: [
                     {
-                        model: GameStatistic
-                    },
-                    {
-                        model: Game
+                        model: Game,
+                        required: true
                     }
                 ]
             });
-            res.render('library', { user , userGames });
+
+            res.render('library', { user, userGames });
         } catch (error) {
-            console.log(error);
-            res.send(error);
+            console.error("Error in getLibrary:", error);
+            // res.status(500).render('error', { 
+            //     message: "An error occurred while loading your library",
+            //     error: error
+            // });
         }
     }
 }
