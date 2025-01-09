@@ -1,4 +1,4 @@
-const { User , UserGame, GameDetails } = require('../models');
+const { User , Game , GameStatistic , UserGame } = require('../models');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 class Controller{
@@ -86,9 +86,13 @@ class Controller{
         try {
             const id = req.params.id;
             const user = await User.findByPk(id, {
-                include: [UserGame, GameDetails]
+                include: [Game]
             });
-            res.render('library', { user });
+            const userGames = await UserGame.findAll({
+                where: { UserId: id },
+                include: [GameStatistic]
+            });
+            res.render('library', { user , userGames });
         } catch (error) {
             console.log(error);
             res.send(error);
