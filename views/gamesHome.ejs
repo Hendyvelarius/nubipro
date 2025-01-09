@@ -19,13 +19,17 @@
             border: none;
             transition: transform 0.2s;
             height: 100%;
+            display: flex;
+            flex-direction: column;
         }
         .game-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
         .game-img {
-            height: 200px;
+            width: 100%;
+            height: auto;
+            max-height: 215px;
             object-fit: cover;
         }
         .price-tag {
@@ -59,6 +63,7 @@
         .search-box::placeholder {
             color: #c6d4df;
         }
+        
         .btn-outline-light {
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #c6d4df;
@@ -107,6 +112,7 @@
         .button-container {
             flex-direction: column;
             gap: 15px;
+            margin-top: auto;
         }
         .price-tag, .cart-btn {
             width: 100%;
@@ -122,6 +128,10 @@
         <div class="container">
             <a class="navbar-brand" href="/">
                 <i class="bi bi-steam me-2"></i>Game Store
+            </a>
+            <a class="navbar-brand" href="/">
+                <span class="btn btn-outline-light me-2">Library</span>
+                
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -145,6 +155,7 @@
         <div class="row row-cols-lg-4 row-cols-md-3 g-4">
             <% games.forEach(game => { %>
                 <div class="col">
+                    <a href="/games/<%= game.id %>" class="text-decoration-none">
                     <div class="card game-card">
                         <img src="<%= game.imageurl || '/images/default-game.jpg' %>" class="card-img-top game-img" alt="<%= game.name || 'Game' %>">
                         <div class="card-body">
@@ -163,11 +174,12 @@
                                     }).format(game.price) %>
                                 </span>
                                 <button class="btn cart-btn">
-                                    <i class="bi bi-cart-plus me-1"></i>Add to Cart
+                                    <i class="bi bi-cart-plus me-1"></i>Purchase Now
                                 </button>
                             </div>
                         </div>
                     </div>
+                    </a>
                 </div>
             <% }); %>
         </div>
