@@ -6,10 +6,8 @@
     <title>Nubipro - <%= user.username %></title>
 </head>
 <body>
-    <% user.Games.forEach(game => { %>
-        <img src="<%= game.imageurl %> " alt="placeholder">
-        <%= game.title %>
-        <button>Play</button>
-    <% }) %>
+    <%= JSON.stringify(user) %>
+    <h1>----</h1>
+    <%= JSON.stringify(userGames) %>
 </body>
 </html>

@@ -84,14 +84,20 @@ class Controller{
     static async getLibrary(req, res) {
         try {
             const id = req.params.id;
-            const user = await User.findByPk(id, {
-                include: [Game]
-            });
+            const user = await User.findByPk(id);
             const userGames = await UserGame.findAll({
                 where: { UserId: id },
-                include: [GameStatistic]
+                include: [
+                    {
+                        model: GameStatistic
+                    },
+                    {
+                        model: Game
+                    }
+                ]
             });
-            res.render('library', { user , userGames });
+            // res.render('library', { user , userGames });
+            res.send(userGames)
         } catch (error) {
             console.log(error);
             res.send(error);

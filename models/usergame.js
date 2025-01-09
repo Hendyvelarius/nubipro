@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       UserGame.belongsTo(models.User);
       UserGame.belongsTo(models.Game);
-      UserGame.hasOne(models.GameStatistic);
+    UserGame.hasOne(models.GameStatistic, { foreignKey: 'UserGameId' });
     }
   }
   UserGame.init({

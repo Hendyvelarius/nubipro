@@ -11,13 +11,21 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      GameStatistic.belongsTo(models.UserGame);
+    GameStatistic.belongsTo(models.UserGame, { foreignKey: 'UserGameId' });
     }
   }
-  GameStatistic.init({
-    hoursPlayed: DataTypes.INTEGER,
-    lastPlayed: DataTypes.DATE
-  }, {
+GameStatistic.init({
+UserGameId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+    model: 'UserGames',
+    key: 'id'
+    }
+},
+hoursPlayed: DataTypes.INTEGER,
+lastPlayed: DataTypes.DATE
+}, {
     sequelize,
     modelName: 'GameStatistic',
   });
