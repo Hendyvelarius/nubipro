@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User , UserGame, GameDetails } = require('../models');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 class Controller{
@@ -79,6 +79,19 @@ class Controller{
             })
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    static async getLibrary(req, res) {
+        try {
+            const id = req.params.id;
+            const user = await User.findByPk(id, {
+                include: [UserGame, GameDetails]
+            });
+            res.render('library', { user });
+        } catch (error) {
+            console.log(error);
+            res.send(error);
         }
     }
 }

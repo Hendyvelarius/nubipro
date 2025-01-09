@@ -5,7 +5,7 @@ const session = require('express-session');
 const { isLogin, isAdmin } = require('../middlewares/auth')
 
 
-game.get('/', isLogin, isAdmin, Controller.getAllGames)
+game.get('/', Controller.getAllGames)
 game.get('/:id', Controller.gameDetails)
 
 module.exports = game;
