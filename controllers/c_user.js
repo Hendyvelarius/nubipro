@@ -80,7 +80,11 @@ class Controller{
 
     static async getLibrary(req, res) {
         try {
+            const userId = req.session?.user.id;
             const id = req.params.id;
+            if(userId != id) {
+                return res.redirect("/games");
+            }
             const user = await User.findByPk(id);
             const userGames = await UserGame.findAll({
                 where: { UserId: id },

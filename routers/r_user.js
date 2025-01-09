@@ -10,7 +10,6 @@ user.get('/login', Controller.getLogin)
 user.post('/login', Controller.postLogin)
 
 user.get('/logout', Controller.getLogout)
-
 user.get('/library/:id', isLogin, Controller.getLibrary)
 
 

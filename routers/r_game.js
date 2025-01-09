@@ -7,5 +7,6 @@ const { isLogin, isAdmin } = require('../middlewares/auth')
 
 game.get('/', Controller.getAllGames)
 game.get('/:id', Controller.gameDetails)
+game.post('/buy/:id', isLogin, Controller.buyGame)
 
 module.exports = game;

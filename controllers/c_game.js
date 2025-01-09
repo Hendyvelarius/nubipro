@@ -1,4 +1,4 @@
-const { Game, Category, GameDetails } = require('../models');
+const { Game, Category, GameDetails, UserGame } = require('../models');
 const session = require('express-session');
 class Controller {
     static async getAllGames(req, res) {
@@ -14,6 +14,7 @@ class Controller {
             res.send(error); 
         }
     }
+
     static async gameDetails(req, res) {
         try {
             let user = req.session?.user;
@@ -27,6 +28,23 @@ class Controller {
             res.send(error);
         }
     }
+
+    static async buyGame(req, res) {
+        try {
+            let userId = req.session?.user.id;
+            // console.log("🚀 ~ Controller ~ buyGame ~ userId:", userId)
+            let idGame = req.params.id;
+            // console.log("🚀 ~ Controller ~ buyGame ~ idGame:", idGame)
+            await UserGame.create({
+                UserId: userId,
+                GameId: idGame
+            });
+        } catch (error) {
+            console.log(error);
+            res.send(error)
+        }
+    }
+
 }
 
 module.exports = Controller;
