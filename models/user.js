@@ -37,8 +37,11 @@ password: {
     allowNull: false,
     validate: {
     notEmpty: true,
-    len: [6, 100]
-    }
+    len:{
+      args: [6, 100],
+      msg: 'Password length must be between 6 and 100 characters' // Password length must be between {{args[0]}} and {{args[1]}
+    } 
+  }
 },
 role: DataTypes.STRING,
 profilePicture: DataTypes.STRING

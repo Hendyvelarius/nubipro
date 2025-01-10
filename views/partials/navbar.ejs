@@ -17,7 +17,7 @@
             </form>
             <div class="d-flex">
                 
-                <% if(user) { %>
+                <% if(user && user.role !== 'admin') { %>
                     <a href="/user/library/<%= user.id %>" class="btn btn-outline-light me-2"> Library</a>
                     <a href="/user/logout" class="btn btn-outline-danger me-2">Logout</a>
                 <% } %>
@@ -26,6 +26,13 @@
                     <a href="/user/login" class="btn btn-outline-light me-2">Login</a>
                     <a href="/user/register" class="btn btn-success">Register</a>
                 <% } %>
+
+                <% if(user && user.role === 'admin') { %>
+                    <a href="/games/manage" class="btn btn-success">Manage</a>
+                    <a href="/user/logout" class="btn btn-outline-danger me-2">Logout</a>
+                <% } %>
+
+                
             </div>
         </div>
     </div>
