@@ -12,26 +12,35 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    Game.belongsTo(models.Category);
-    Game.belongsToMany(models.User, {through: models.UserGame});
-    Game.hasOne(models.GameDetails)
+      Game.belongsTo(models.Category);
+      Game.belongsToMany(models.User, {through: models.UserGame});
+      Game.hasOne(models.GameDetails);
     }
 
     static searchGameTitle(value) {
       const options = {
-          include: [sequelize.models.Category, sequelize.models.GameDetails]
-      }
-      
+        include: [sequelize.models.Category, sequelize.models.GameDetails]
+      };
+
       if(value) {
-          options.where = {
-            name: {
-              [Op.iLike]: `%${value}%`
-            }
-        }
+        options.where = {
+          name: {
+            [Op.iLike]: `%${value}%`
+          }
+        };
       }
       return options;
     }
+
+    get price() {
+      return this.price;
+    }
+
+    get priceCurrency() {
+      return `Rp ${this.price.toLocaleString('id-ID')}`;
+    }
   };
+
   Game.init({
     name: DataTypes.STRING,
     price: DataTypes.INTEGER,
@@ -41,5 +50,6 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'Game',
   });
+
   return Game;
 };
