@@ -2,8 +2,8 @@
 const {
   Model
 } = require('sequelize');
-
 const bcrypt = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -13,47 +13,65 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsToMany(models.Game, {through: models.UserGame});
+      User.belongsToMany(models.Game, { through: models.UserGame });
     }
   }
-User.init({
-username: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-    notEmpty: true
-    }
-},
-email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-    notEmpty: true,
-    isEmail: true
-    }
-},
-password: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-    notEmpty: true,
-    len: [6, 100]
-    }
-},
-role: DataTypes.STRING,
-profilePicture: DataTypes.STRING
-}, {
+  User.init({
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        msg: 'Username must be unique.',
+      },
+      validate: {
+        notEmpty: {
+          msg: 'Username is required.',
+        },
+      },
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: {
+        msg: 'Email must be unique.',
+      },
+      validate: {
+        notEmpty: {
+          msg: 'Email is required.',
+        },
+        isEmail: {
+          msg: 'Must be a valid email address.',
+        },
+      },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Password is required.',
+        },
+        len: {
+          args: [6, 100],
+          msg: 'Password must be between 6 and 100 characters.',
+        },
+      },
+    },
+    role: DataTypes.STRING,
+    profilePicture: DataTypes.STRING,
+  }, {
     hooks: {
-    beforeCreate: (instance) => {
+      beforeCreate: (instance) => {
         if (instance.password) {
-        const salt = bcrypt.genSaltSync(10);
-        const hash = bcrypt.hashSync(instance.password, salt);
-        instance.password = hash;
+          const salt = bcrypt.genSaltSync(10);
+          const hash = bcrypt.hashSync(instance.password, salt);
+          instance.password = hash;
         }
-    }
+      },
     },
     sequelize,
     modelName: 'User',
   });
+
   return User;
 };
