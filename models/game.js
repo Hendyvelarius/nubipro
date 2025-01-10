@@ -32,10 +32,6 @@ module.exports = (sequelize, DataTypes) => {
       return options;
     }
 
-    get price() {
-      return this.price;
-    }
-
     get priceCurrency() {
       return `Rp ${this.price.toLocaleString('id-ID')}`;
     }
