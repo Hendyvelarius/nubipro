@@ -387,9 +387,13 @@
                     <img src="<%= game.imageurl %>" alt="<%= game.name %> Thumbnail">
                 </div>
                 <div class="price-container">
+                    
                     <div class="price"><%= new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(game.price) %></div>
-                    <a href="#" class="buy-button">Purchase Now</a>
+                    <form action="/games/buy/<%= game.id %>" method="POST">
+                    <button class="buy-button">Purchase Now</button>
+                    </form>
                     <button class="wishlist-button"><i class="far fa-heart"></i> Add to Wishlist</button>
+                    
                 </div>
                 <div class="game-features">
                     <h3>Game Features</h3>
