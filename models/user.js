@@ -20,14 +20,22 @@ User.init({
 username: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: {
+      msg: 'Username must be unique.',
+    },
     validate: {
+    notNull: true,
     notEmpty: true
     }
 },
 email: {
     type: DataTypes.STRING,
     allowNull: false,
+    unique: {
+      msg: 'Email must be unique.',
+    },
     validate: {
+    notNull: true,
     notEmpty: true,
     isEmail: true
     }
@@ -36,6 +44,7 @@ password: {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
+    notNull: true,
     notEmpty: true,
     len:{
       args: [6, 100],
